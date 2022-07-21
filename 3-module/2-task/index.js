@@ -1,3 +1,11 @@
 function filterRange(arr, a, b) {
-  // ваш код...
+  function handler (item)
+  {
+    if (item >=a && item <=b ){
+      return true
+    }
+    else return false
+  }
+  let resArr= arr.filter(handler)
+  return resArr
 }
