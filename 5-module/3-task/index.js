@@ -46,7 +46,7 @@ function initCarousel() {
 
 
 
-// второй способ
+// // второй способ
 // function initCarousel() {
 //   let carousel = document.querySelector(".carousel");
 //   let leftArrowBtn = carousel.querySelector(".carousel__arrow_left");
