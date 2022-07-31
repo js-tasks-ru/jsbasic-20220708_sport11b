@@ -13,8 +13,9 @@ function initCarousel() {
   let count = 1;
 
   // слушатель события для левой и правой кнопок
-  carouselArrowRight.addEventListener("click", handler);
-  carouselArrowLeft.addEventListener("click", handler);
+  // carouselArrowRight.addEventListener("click", handler);
+  // carouselArrowLeft.addEventListener("click", handler);
+  carousel.addEventListener("click", handler);
 
   // начальные состояния кнопок
   carouselArrowRight.style.display = '';
