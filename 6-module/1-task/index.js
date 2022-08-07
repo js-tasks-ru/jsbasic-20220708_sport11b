@@ -12,19 +12,20 @@
  *      }
  *
  */
-export default class UserTable {  elem;  rows;  tab;
+export default class UserTable {
+  #elem; // приватные свойства
+  #rows; // приватные свойства
   constructor(rows) {
-    this.elem = document.createElement('table'); // при нициализации экземпляра класса (ЭК) будет сразу создан элемент с тегом table и свойством класса elem
-    this.rows = rows; // в свойство ЭК rows записывается объект со строками rows
+    this.#elem = document.createElement('table'); // при нициализации экземпляра класса (ЭК) будет сразу создан элемент с тегом table и свойством класса elem
+    this.#rows = rows; // в свойство ЭК rows записывается объект со строками rows
     this.createTable(); // сразу вызываем метод класса для создания таблиц
     this.eventListen(); // метод удаления строк
-
   }
-  get elem() {return this.elem;} // вызов свойства elem
+  get elem() {return this.#elem;} // вызов свойства elem
   // описываем метод для создания и редактирования таблицы
   createTable(){
     // добавляем в элемент elem ( тег table) заголовки таблицы
-    this.elem.insertAdjacentHTML("beforeEnd",
+    this.#elem.insertAdjacentHTML("beforeEnd",
     `<thead id="th">
     <tr>
       <th>Имя</th>
@@ -36,10 +37,10 @@ export default class UserTable {  elem;  rows;  tab;
     </thead>`);
     // перебираем в цикле все строки из массива rows  и добавляем в таблицу
     let i = 0;
-    for (let r of this.rows){
+    for (let r of this.#rows){
       i+=1;  // ид номер каждой добавляемой строки в таблице
       console.log(r);  // тест
-    this.elem.insertAdjacentHTML("beforeEnd",
+    this.#elem.insertAdjacentHTML("beforeEnd",
     `<tbody>
         <tr id="${i}">
           <td>${r.name}</td>
@@ -54,8 +55,8 @@ export default class UserTable {  elem;  rows;  tab;
   // добавляем обработчик события на клик на элемент с тегом button
   eventListen() {
 
-    let s = this.elem.querySelectorAll("button");  // находим кнопки
-    let h = this.elem.querySelectorAll('#th')[0];  // заголовок таблицы
+    let s = this.#elem.querySelectorAll("button");  // находим кнопки
+    let h = this.#elem.querySelectorAll('#th')[0];  // заголовок таблицы
     let l = s.length; // считаем сколько всего кнопок найдено
     for(let b of s){
       b.addEventListener("click", function (e) {
