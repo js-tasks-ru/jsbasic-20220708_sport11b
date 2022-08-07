@@ -6,11 +6,13 @@ export default class ProductCard {
 
   // В качестве аргумента в конструктор класса передаётся объект, описывающий товар
   constructor(product) {
-  this.product = product;
-  this.#create_card();
-  this.#eventListen();
+  this.product = product; // в это свойство передан объект описывающий товар
+  this.#create_card();  // метод для создания карточки товара
+  this.#eventListen();  // слушает клики мышки и создает пользовательское событие
   }
 
+
+  // описываем метод для создания карточки товара
   #create_card() {
     this.#card = createElement(
       `   <div class="card">
@@ -29,24 +31,29 @@ export default class ProductCard {
     );
   }
 
+  // возвращаем приватное свойство #card через ProductCard.elem в коде html-файла
   get elem(){return this.#card}
 
-  // добавляем обработчик события на клик на элемент
+  // добавляем приватный # обработчик события на клик на элемент
   #eventListen() {
+    // в переменную handlerClick пишем стрелочную функцию с аргументом event
     const handlerClick = (event)=>{
       // if(event.target.className==='card__img__del' || event.target.className==='card__button')
-      if(event.target.closest(".card__button"))
+      if(event.target.closest(".card__button"))  // если event пришелся на ближайшем теге с классмом card__button
       {
+        // то создаем объект пользовательского события new CustomEvent("product-add"...) и помещаем в переменную custEvent, чтобы потом запустить его на элементе
+        // https://learn.javascript.ru/dispatch-events
         let custEvent = new CustomEvent("product-add", { // имя события должно быть именно "product-add"
           detail: this.product.id, // Уникальный идентификатора товара из объекта товара
           bubbles: true // это событие всплывает - это понадобится в дальнейшем
         });
+        //передаем объект события в приватный элемент #card
         this.#card.dispatchEvent(custEvent);
         console.log(event);
       }
     }
+    // добавляем слушатель кликов мышью на ближайшем теге с классмом card__button
    this.#card.addEventListener('click', handlerClick);
-
   }
 }
 
