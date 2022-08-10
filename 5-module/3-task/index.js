@@ -27,13 +27,13 @@ function initCarousel() {
   let transition = 0;
   // функция выполняющаяся при клике на стрелки
     function handler(e) {
-      // если клик случался на правой стрелке
+      // если клик случился на правой стрелке
       if (e.target===carouselArrowRight) {
         transition += width;
         carouselinner.style.transform = `translateX(-${transition}px)`;
         count++;
       }
-      // если клик случался на правой стрелке
+      // если клик случился на левой стрелке
       else if (e.target===carouselArrowLeft) {
         transition -= width;
         carouselinner.style.transform = `translateX(-${transition}px)`;
